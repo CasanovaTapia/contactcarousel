@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141213045541) do
+ActiveRecord::Schema.define(version: 20141213052330) do
 
   create_table "contacts", force: true do |t|
     t.string   "name"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20141213045541) do
     t.integer  "investing_id"
     t.integer  "timing_id"
     t.integer  "motivator_id"
+    t.text     "body"
   end
 
   add_index "contacts", ["conversation_id"], name: "index_contacts_on_conversation_id"

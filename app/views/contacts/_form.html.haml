@@ -47,5 +47,8 @@
       .form-group
         = f.label :motivator
         = f.select :motivator_id, options_from_collection_for_select(Motivator.all, "id", "result")
+      .form-group
+        = f.label :notes
+        = f.text_area :body, class: 'form-control', rows: 6
       .actions
         = f.submit 'Save', class: 'btn btn-success'
