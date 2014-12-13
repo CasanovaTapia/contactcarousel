@@ -1,33 +1,13 @@
-%h1 Listing contacts
-
-%table
-  %tr
-    %th Name
-    %th Entity
-    %th Phone
-    %th Alt phone
-    %th Dead phone
-    %th Email
-    %th Alt email
-    %th Dead email
-    %th
-    %th
-    %th
-
-  - @contacts.each do |contact|
-    %tr
-      %td= contact.name
-      %td= contact.entity
-      %td= contact.phone
-      %td= contact.alt_phone
-      %td= contact.dead_phone
-      %td= contact.email
-      %td= contact.alt_email
-      %td= contact.dead_email
-      %td= link_to 'Show', contact
-      %td= link_to 'Edit', edit_contact_path(contact)
-      %td= link_to 'Destroy', contact, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
+%h1 Contacts
+- @contacts.each do |contact|
+  .row
+    .col-md-3
+      %p= contact.name
+    .col-md-3
+      %small= contact.entity
+    .col-md-1
+      = contact.investing.result
+    .col-md-1
+      = contact.timing.result
 
 = link_to 'New Contact', new_contact_path
