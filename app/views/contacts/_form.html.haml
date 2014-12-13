@@ -5,30 +5,47 @@
       %ul
         - @contact.errors.full_messages.each do |msg|
           %li= msg
-
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :entity
-    = f.text_field :entity
-  .field
-    = f.label :phone
-    = f.text_field :phone
-  .field
-    = f.label :alt_phone
-    = f.text_field :alt_phone
-  .field
-    = f.label :dead_phone
-    = f.text_field :dead_phone
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :alt_email
-    = f.text_field :alt_email
-  .field
-    = f.label :dead_email
-    = f.text_field :dead_email
-  .actions
-    = f.submit 'Save'
+  .row
+    .col-md-4
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: 'form-control'
+      .form-group
+        = f.label :entity
+        = f.text_field :entity, class: 'form-control'
+      .form-group
+        = f.label :phone
+        = f.text_field :phone, class: 'form-control'
+      .form-group
+        = f.label :alt_phone
+        = f.text_field :alt_phone, class: 'form-control'
+      .form-group
+        = f.label :dead_phone
+        = f.text_field :dead_phone, class: 'form-control'
+      .form-group
+        = f.label :email
+        = f.text_field :email, class: 'form-control'
+      .form-group
+        = f.label :alt_email
+        = f.text_field :alt_email, class: 'form-control'
+      .form-group
+        = f.label :dead_email
+        = f.text_field :dead_email, class: 'form-control'
+    .col-md-4
+      .form-group
+        = f.label :dial
+        = f.select :dial_id, options_from_collection_for_select(Dial.all, "id", "result"), class: 'form-control'
+      .form-group
+        = f.label :conversation
+        = f.select :conversation_id, options_from_collection_for_select(Conversation.all, "id", "result")
+      .form-group
+        = f.label :investing
+        = f.select :investing_id, options_from_collection_for_select(Investing.all, "id", "result")
+      .form-group
+        = f.label :timing
+        = f.select :timing_id, options_from_collection_for_select(Timing.all, "id", "result")
+      .form-group
+        = f.label :motivator
+        = f.select :motivator_id, options_from_collection_for_select(Motivator.all, "id", "result")
+      .actions
+        = f.submit 'Save', class: 'btn btn-success'
