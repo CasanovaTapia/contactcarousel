@@ -1,0 +1,37 @@
+= form_for [@contact, @contact.properties.build] do |f|
+  - if @property.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@property.errors.count, "error")} prohibited this property from being saved:"
+      %ul
+        - @property.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :street_no
+    = f.number_field :street_no
+  .field
+    = f.label :street
+    = f.text_field :street
+  .field
+    = f.label :city
+    = f.text_field :city
+  .field
+    = f.label :state
+    = f.text_field :state
+  .field
+    = f.label :zip
+    = f.number_field :zip
+  .field
+    = f.label :year_built
+    = f.number_field :year_built
+  .field
+    = f.label :units
+    = f.number_field :units
+  .field
+    = f.label :purchase_year
+    = f.number_field :purchase_year
+  .field
+    = f.label :contact
+    = f.text_field :contact
+  .actions
+    = f.submit 'Save'

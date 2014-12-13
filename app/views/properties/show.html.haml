@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Street no:
+  = @property.street_no
+%p
+  %b Street:
+  = @property.street
+%p
+  %b City:
+  = @property.city
+%p
+  %b State:
+  = @property.state
+%p
+  %b Zip:
+  = @property.zip
+%p
+  %b Year built:
+  = @property.year_built
+%p
+  %b Units:
+  = @property.units
+%p
+  %b Purchase year:
+  = @property.purchase_year
+%p
+  %b Contact:
+  = @property.contact
+
+= link_to 'Edit', edit_property_path(@property)
+\|
+= link_to 'Back', properties_path

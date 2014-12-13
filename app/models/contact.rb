@@ -4,6 +4,7 @@ class Contact < ActiveRecord::Base
   belongs_to :investing
   belongs_to :timing
   belongs_to :motivator
+  has_many :properties, dependent: :destroy
 
   validates :name, presence: true
 
