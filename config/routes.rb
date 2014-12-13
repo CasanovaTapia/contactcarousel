@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'dials/new'
+
   resources :contacts
 
   get 'static/home'  

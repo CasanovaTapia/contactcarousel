@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141213000317) do
+ActiveRecord::Schema.define(version: 20141213045458) do
 
   create_table "contacts", force: true do |t|
     t.string   "name"
@@ -22,6 +22,39 @@ ActiveRecord::Schema.define(version: 20141213000317) do
     t.string   "email"
     t.string   "alt_email"
     t.string   "dead_email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "dial_id"
+    t.integer  "conversation_id"
+    t.integer  "investing_id"
+    t.integer  "timing_id"
+  end
+
+  add_index "contacts", ["conversation_id"], name: "index_contacts_on_conversation_id"
+  add_index "contacts", ["dial_id"], name: "index_contacts_on_dial_id"
+  add_index "contacts", ["investing_id"], name: "index_contacts_on_investing_id"
+  add_index "contacts", ["timing_id"], name: "index_contacts_on_timing_id"
+
+  create_table "conversations", force: true do |t|
+    t.string   "result"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dials", force: true do |t|
+    t.string   "result"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "investings", force: true do |t|
+    t.string   "result"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "timings", force: true do |t|
+    t.string   "result"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
