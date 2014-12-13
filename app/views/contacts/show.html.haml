@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @contact.name
+%p
+  %b Entity:
+  = @contact.entity
+%p
+  %b Phone:
+  = @contact.phone
+%p
+  %b Alt phone:
+  = @contact.alt_phone
+%p
+  %b Dead phone:
+  = @contact.dead_phone
+%p
+  %b Email:
+  = @contact.email
+%p
+  %b Alt email:
+  = @contact.alt_email
+%p
+  %b Dead email:
+  = @contact.dead_email
+
+= link_to 'Edit', edit_contact_path(@contact)
+\|
+= link_to 'Back', contacts_path
