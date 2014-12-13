@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'conversations/new'
+
   get 'dials/new'
 
   resources :contacts
