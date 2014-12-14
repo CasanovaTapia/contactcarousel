@@ -10,11 +10,22 @@ class Contact < ActiveRecord::Base
 
   default_scope { order('updated_at DESC') }
 
-  def next
-    Contact.where("contacts.id > ?", self.id).order("contacts.id ASC").limit(1)
-  end
+  scope :next, lambda { |id| where("id > ?", id).order("id ASC") }
+  scope :previous, lambda { |id| where("id < ?", id).order("id DESC") }
 
   def previous
-    Contact.where("contacts.id > ?", self.id).order("contacts.id DESC").limit(1)
+    unless self.id == 1
+      Contact.where("id < ?", self.id).first
+    else
+      Contact.last
+    end
+  end
+
+  def next
+    if self.id == Contact.first.id
+      Contact.first
+    else
+      Contact.where("id > ?", self.id).last
+    end
   end
 end

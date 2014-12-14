@@ -1,9 +1,9 @@
 .row
   .col-md-1
-    = link_to "#", class: 'btn' do
+    = link_to edit_contact_path(@contact.previous), class: 'btn' do
       %i.glyphicon.glyphicon-chevron-left
   .col-md-10
     = render 'form'
   .col-md-1
-    = link_to "#", class: 'btn' do
+    = link_to edit_contact_path(@contact.next), class: 'btn' do
       %i.glyphicon.glyphicon-chevron-right
