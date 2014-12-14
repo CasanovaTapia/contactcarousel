@@ -1,30 +1,49 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @contact.name
-%p
-  %b Entity:
-  = @contact.entity
-%p
-  %b Phone:
-  = @contact.phone
-%p
-  %b Alt phone:
-  = @contact.alt_phone
-%p
-  %b Dead phone:
-  = @contact.dead_phone
-%p
-  %b Email:
-  = @contact.email
-%p
-  %b Alt email:
-  = @contact.alt_email
-%p
-  %b Dead email:
-  = @contact.dead_email
+.row
+  .col-md-4
+    %p
+      %b Name:
+      = @contact.name
+    %p
+      %b Entity:
+      = @contact.entity
+    %p
+      %b Phone:
+      = @contact.phone
+    %p
+      %b Alt phone:
+      = @contact.alt_phone
+    %p
+      %b Dead phone:
+      = @contact.dead_phone
+    %p
+      %b Email:
+      = @contact.email
+    %p
+      %b Alt email:
+      = @contact.alt_email
+    %p
+      %b Dead email:
+      = @contact.dead_email
+  .col-md-4
+    %p
+      %b Dial result:
+      = @contact.dial.result
+    %p
+      %b Conversation result:
+      = @contact.conversation.result
+    %p
+      %b Investing? :
+      = @contact.investing.result
+    %p
+      %b Timing:
+      = @contact.timing.result
+    %p
+      %b Motivator:
+      = @contact.motivator.result
+    %p
+      %b Notes:
+      = @contact.body
 
-= link_to 'Edit', edit_contact_path(@contact)
-\|
-= link_to 'Back', contacts_path
+-# = link_to "next", @contact.next

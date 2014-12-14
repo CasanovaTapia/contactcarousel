@@ -2,7 +2,7 @@
 - @contacts.each do |contact|
   .row
     .col-md-3
-      %p= contact.name
+      %p= link_to contact.name, edit_contact_path(contact)
     .col-md-3
       %small= contact.entity
     .col-md-1
