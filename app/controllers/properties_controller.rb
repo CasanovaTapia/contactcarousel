@@ -24,7 +24,8 @@ class PropertiesController < ApplicationController
   # POST /properties
   # POST /properties.json
   def create
-    @property = Property.new(property_params)
+    @contact = Contact.find(params[:contact_id])
+    @property = @contact.properties.new(property_params)
 
     respond_to do |format|
       if @property.save

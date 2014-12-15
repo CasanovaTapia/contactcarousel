@@ -52,3 +52,20 @@ motivators = Motivator.all
     motivator_id:       motivators.sample.id,
   )
 end
+contacts = Contact.all
+
+# Create Properties
+50.times do
+  Property.create!(
+    street_no:        Faker::Number.number(4),
+    street:           Faker::Address.street_name,
+    city:             Faker::Address.city,
+    state:            Faker::Address.state_abbr,
+    zip:              Faker::Address.zip_code,
+    year_built:       "19" + Faker::Number.number(2),
+    units:            Faker::Number.number(2),
+    purchase_year:    "19" + Faker::Number.number(2),
+    contact_id:       contacts.sample.id
+  )
+end
+properties = Property.all
