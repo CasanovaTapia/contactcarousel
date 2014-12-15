@@ -17,13 +17,13 @@ class Contact < ActiveRecord::Base
     unless self.id == 1
       Contact.where("id < ?", self.id).first
     else
-      Contact.last
+      Contact.first
     end
   end
 
   def next
     if self.id == Contact.first.id
-      Contact.first
+      Contact.last
     else
       Contact.where("id > ?", self.id).last
     end

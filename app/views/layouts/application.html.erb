@@ -25,7 +25,8 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li><%= link_to "About", static_about_path %></li>
-          <li><%= link_to "Contacts", contacts_path %></li>
+          <li><%= link_to "Index", contacts_path %></li>
+          <li><%= link_to "Carousel", edit_contact_path(Contact.first) %></li>
           <li><%= link_to "Log in", "#" %></li>
           <li><%= link_to "Sign up", "#" %></li>
           <!-- <li class="dropdown">

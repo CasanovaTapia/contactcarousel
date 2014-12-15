@@ -34,7 +34,20 @@
         = f.text_field :dead_email, class: 'form-control'
     .col-md-4
       %h3 Property details
-
+      - @contact.properties.each do |property|
+        %p.lead= "#{property.street_no} #{property.street}"
+        %p.lead= "#{property.city}, #{property.state} #{property.zip}"
+        %p
+          %b Units:
+          = property.units
+        %p
+          %b Year built:
+          = property.year_built
+        %p
+          %b Purchase year:
+          = property.purchase_year
+        = link_to "Edit property", edit_contact_property_path(@contact, property), class: 'btn btn-primary'
+      = link_to "Add property", new_contact_property_path(@contact), class: 'btn btn-primary'
 
     .col-md-4
       %h3 Call result
