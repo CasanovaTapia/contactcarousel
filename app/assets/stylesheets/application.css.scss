@@ -1,7 +1,16 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.navbar-default {
+  background-color: transparent;
+  border: none;
+}
+
 .glyphicon {
   margin-top: 200px;
   font-size: 50px;
+}
+
+.welcome {
+  margin-top: 200px;
 }
