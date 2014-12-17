@@ -30,3 +30,4 @@ group :doc do
 end
 
 gem 'faker'
+gem 'devise'
