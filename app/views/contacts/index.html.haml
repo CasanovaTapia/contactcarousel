@@ -1,13 +1,21 @@
-%h1 Contacts
+.row
+  .col-md-2
+    %b Contact Name
+  .col-md-2
+    %b Company
+  .col-md-2
+    %b Phone
+  .col-md-1
+    %b Email
 - @contacts.each do |contact|
   .row
-    .col-md-3
+    .col-md-2
       %p= link_to contact.name, edit_contact_path(contact)
-    .col-md-3
+    .col-md-2
       %small= contact.entity
+    .col-md-2
+      = contact.phone
     .col-md-1
-      = contact.investing.result
-    .col-md-1
-      = contact.timing.result
+      = contact.email
 
 = link_to 'New Contact', new_contact_path
