@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'conversations/new'
-
-  get 'dials/new'
+  devise_for :users
 
   resources :contacts do
     resources :properties
