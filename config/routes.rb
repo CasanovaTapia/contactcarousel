@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :properties
   end
 
+  resources :charges, only: [:new, :create]
+
   get 'static/home'
   get 'about', to: 'static#about', as: :static_about
 
