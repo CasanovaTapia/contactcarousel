@@ -11,11 +11,9 @@ class ChargesController < ApplicationController
     charge = Stripe::Charge.create(
       customer: customer.id,
       amount: @amount,
-      description: "Call Carousel Subscription - #{current_user.email}",
+      description: "Call Carousel Subscription",
       currency: 'usd'
     )
-
-    current_user.update_attributes(role: 'lead')
 
     flash[:success] = "Thank you for subscribing to Call Carousel."
     redirect_to contacts_path
@@ -29,7 +27,7 @@ class ChargesController < ApplicationController
   def new
     @stripe_btn_data = {
       key: "#{ Rails.configuration.stripe[:publishable_key] }",
-      description: "Call Carousel Subscription - #{current_user.email}",
+      description: "Call Carousel Subscription",
       amount: 5_00
     }
   end
