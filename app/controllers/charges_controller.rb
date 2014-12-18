@@ -1,6 +1,7 @@
 class ChargesController < ApplicationController
+  before_filter :authenticate_user!
+  
   def create
-
     @amount = params[:amount]
 
     customer = Stripe::Customer.create(

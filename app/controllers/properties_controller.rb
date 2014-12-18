@@ -1,24 +1,29 @@
 class PropertiesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_property, only: [:show, :edit, :update, :destroy]
 
   # GET /properties
   # GET /properties.json
   def index
     @properties = Property.all
+    authorize @properties
   end
 
   # GET /properties/1
   # GET /properties/1.json
   def show
+    authorize @property
   end
 
   # GET /properties/new
   def new
     @property = Property.new
+    authorize @property
   end
 
   # GET /properties/1/edit
   def edit
+    authorize @property
   end
 
   # POST /properties
@@ -26,6 +31,7 @@ class PropertiesController < ApplicationController
   def create
     @contact = Contact.find(params[:contact_id])
     @property = @contact.properties.new(property_params)
+    authorize @property
 
     respond_to do |format|
       if @property.save
@@ -41,6 +47,7 @@ class PropertiesController < ApplicationController
   # PATCH/PUT /properties/1
   # PATCH/PUT /properties/1.json
   def update
+    authorize @property
     respond_to do |format|
       if @property.update(property_params)
         format.html { redirect_to @property, notice: 'Property was successfully updated.' }
@@ -55,6 +62,7 @@ class PropertiesController < ApplicationController
   # DELETE /properties/1
   # DELETE /properties/1.json
   def destroy
+    authorize @property
     @property.destroy
     respond_to do |format|
       format.html { redirect_to properties_url, notice: 'Property was successfully destroyed.' }
