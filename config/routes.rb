@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :transactions, only: [:new, :create]
-  
+  resources :subscriptions, only: [:index, :new, :create]
+
   devise_for :users
 
   resources :contacts do
