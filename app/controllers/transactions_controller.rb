@@ -21,7 +21,7 @@ class TransactionsController < ApplicationController
       currency: 'usd'
     )
 
-    # current_user.update_attributes(role: 'premium')
+    current_user.update_attributes(role: 'premium')
 
     flash[:success] = "Thank you for subscribing to Call Carousel."
     redirect_to contacts_path
