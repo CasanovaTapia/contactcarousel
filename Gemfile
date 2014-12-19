@@ -32,3 +32,4 @@ end
 gem 'faker'
 gem 'devise'
 gem 'figaro'
+gem 'stripe', '~> 1.15.0'
