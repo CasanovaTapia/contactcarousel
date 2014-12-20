@@ -32,6 +32,5 @@ end
 gem 'faker'
 gem 'devise'
 gem 'figaro'
-gem 'stripe'
+gem 'stripe', '~> 1.15.0'
 gem 'pundit'
-gem 'koudoku'

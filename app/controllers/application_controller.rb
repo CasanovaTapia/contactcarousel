@@ -8,6 +8,9 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, alert: exception.message
   end
 
+    redirect_to new_transaction_path, alert: "You must have a subscription to access this page."
+  end
+
   protected
 
   def configure_permitted_parameters
