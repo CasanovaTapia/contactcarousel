@@ -13,6 +13,12 @@ class Contact < ActiveRecord::Base
   scope :next, lambda { |id| where("id > ?", id).order("id ASC") }
   scope :previous, lambda { |id| where("id < ?", id).order("id DESC") }
 
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      Contact.create! row.to_hash
+    end
+  end
+
   def previous
     unless self.id == 1
       Contact.where("id < ?", self.id).first

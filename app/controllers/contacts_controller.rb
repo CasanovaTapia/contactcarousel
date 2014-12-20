@@ -2,6 +2,14 @@ class ContactsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
 
+  def database
+  end
+
+  def import
+    Contact.import(params[:file])
+    redirect_to contacts_path, notice: "Contacts imported."
+  end
+
   # GET /contacts
   # GET /contacts.json
   def index
