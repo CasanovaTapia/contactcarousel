@@ -1,6 +1,19 @@
 .row
   .col-md-6.col-md-offset-3
-    %p Import your contact database via .csv file
+    %p Import your contact database via CSV file
+    %p The first row must be Contact attributes (name, entity, phone, email)
+    %br
+    %h5 Sample CSV file
+    = image_tag "http://i1381.photobucket.com/albums/ah208/Ching_Casanova_Tapia/ScreenShot2014-12-20at125834PM_zpsa73901d1.png"
+    %br
+    %br
+    %br
+    %p Or save an Excel spreadsheet as a CSV file
+    %h5 Sample spreadsheet, saved as .csv
+    = image_tag "http://i1381.photobucket.com/albums/ah208/Ching_Casanova_Tapia/ScreenShot2014-12-20at125603PM_zpsf5ac04a9.png"
+    %br
+    %br
+    %br
     = form_tag import_contacts_path, multipart: true do
       = file_field_tag :file
       %br
