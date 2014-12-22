@@ -20,8 +20,14 @@
     %b Company
   .col-md-2
     %b Phone
-  .col-md-1
+  .col-md-3
     %b Email
+  .col-md-1
+    %b Status
+  .col-md-1
+    %b Timing
+  .col-md-1
+    %b Motivator
 - @contacts.each do |contact|
   .row
     .col-md-2
@@ -30,7 +36,13 @@
       %small= contact.entity
     .col-md-2
       = contact.phone
-    .col-md-1
+    .col-md-3
       = contact.email
-      
+    .col-md-1
+      = contact.investing.result if contact.investing
+    .col-md-1
+      = contact.timing.result if contact.timing
+    .col-md-1
+      = contact.motivator.result if contact.motivator
+
 = will_paginate @contacts

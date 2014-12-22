@@ -36,3 +36,4 @@ gem 'stripe', '~> 1.15.0'
 gem 'pundit'
 gem 'searchkick'
 gem 'will_paginate', '~> 3.0.6'
+gem 'whenever', :require => false
