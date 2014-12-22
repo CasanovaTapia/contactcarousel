@@ -16,4 +16,8 @@ class ContactPolicy < ApplicationPolicy
   def index?
     user.present? && user.premium?
   end
+
+  def show?
+    user.present?
+  end
 end

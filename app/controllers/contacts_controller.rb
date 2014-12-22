@@ -21,6 +21,7 @@ class ContactsController < ApplicationController
   # GET /contacts/1.json
   def show
     authorize @contact
+    redirect_to edit_contact_path(@contact)
   end
 
   # GET /contacts/new
