@@ -1,48 +1,54 @@
-.row
-  .col-md-4
-    = link_to "Import Contacts", database_contacts_path, class: 'btn btn-primary btn-sm'
-    = link_to "Add Contact", new_contact_path, class: 'btn btn-success btn-sm'
-  .col-md-3
-    = form_tag contacts_path, class: "form-inline", method: :get do
-      .form-group
-        = text_field_tag :query, params[:query], class: "form-control"
-      = submit_tag "Search", class: "btn btn-primary"
-      - if params[:query].present?
-        = link_to "clear", contacts_path
-%br
-%br
-%br
+- if current_user.contacts.first
+  .row
+    .col-md-4
+      = link_to "Import Contacts", database_contacts_path, class: 'btn btn-primary btn-sm'
+      = link_to "Add Contact", new_contact_path, class: 'btn btn-success btn-sm'
+    .col-md-3
+      = form_tag contacts_path, class: "form-inline", method: :get do
+        .form-group
+          = text_field_tag :query, params[:query], class: "form-control"
+        = submit_tag "Search", class: "btn btn-primary"
+        - if params[:query].present?
+          = link_to "clear", contacts_path
+  %br
+  %br
+  %br
 
-.row
-  .col-md-2
-    %b Contact Name
-  .col-md-2
-    %b Company
-  .col-md-2
-    %b Phone
-  .col-md-3
-    %b Email
-  .col-md-1
-    %b Status
-  .col-md-1
-    %b Timing
-  .col-md-1
-    %b Motivator
-- @contacts.each do |contact|
   .row
     .col-md-2
-      %p= link_to contact.name, edit_contact_path(contact)
+      %b Contact Name
     .col-md-2
-      %small= contact.entity
+      %b Company
     .col-md-2
-      = contact.phone
+      %b Phone
     .col-md-3
-      = mail_to contact.email
+      %b Email
     .col-md-1
-      = contact.investing.result if contact.investing
+      %b Status
     .col-md-1
-      = contact.timing.result if contact.timing
+      %b Timing
     .col-md-1
-      = contact.motivator.result if contact.motivator
+      %b Motivator
+  - @contacts.each do |contact|
+    .row
+      .col-md-2
+        %p= link_to contact.name, edit_contact_path(contact)
+      .col-md-2
+        %small= contact.entity
+      .col-md-2
+        = contact.phone
+      .col-md-3
+        = mail_to contact.email
+      .col-md-1
+        = contact.investing.result if contact.investing
+      .col-md-1
+        = contact.timing.result if contact.timing
+      .col-md-1
+        = contact.motivator.result if contact.motivator
 
-= will_paginate @contacts
+  = will_paginate @contacts
+- else
+  .text-center
+    %p Upload your first contact, or import your database
+    = link_to "Import Contacts", database_contacts_path, class: 'btn btn-primary btn-sm'
+    = link_to "Add Contact", new_contact_path, class: 'btn btn-success btn-sm'
