@@ -1,3 +1,5 @@
+%h3
+  .text-warning.text-right= "status: #{@contact.investing.result}, #{@contact.timing.result}" if @contact.investing && @contact.timing
 .row
   .col-md-1
     = link_to edit_contact_path(@contact.previous), class: 'btn' do
@@ -12,7 +14,7 @@
               %li= msg
       .row
         .col-md-4
-          %h3 Contact details
+          %h4 Contact details
           .form-group
             = f.label :name
             = f.text_field :name, class: 'form-control'
@@ -37,12 +39,15 @@
           .form-group
             = f.label :dead_email
             = f.text_field :dead_email, class: 'form-control'
+          .form-group
+            = f.label :notes
+            = f.text_area :body, class: 'form-control', rows: 6
         .col-md-4
-          %h3 Property details
+          %h4 Property details
           = link_to "Add property", new_contact_property_path(@contact)
           - @contact.properties.each do |property|
-            %p.lead= "#{property.street_no} #{property.street}"
-            %p.lead= "#{property.city}, #{property.state} #{property.zip}"
+            %p= "#{property.street_no} #{property.street}"
+            %p= "#{property.city}, #{property.state} #{property.zip}"
             %p
               %b Units:
               = property.units
@@ -57,7 +62,7 @@
 
 
         .col-md-4
-          %h3 Call result
+          %h4 Call result
           .form-group
             = f.label :dial
             = f.select :dial_id, options_from_collection_for_select(Dial.all, "id", "result"), class: 'form-control'
@@ -73,9 +78,6 @@
           .form-group
             = f.label :motivator
             = f.select :motivator_id, options_from_collection_for_select(Motivator.all, "id", "result")
-          .form-group
-            = f.label :notes
-            = f.text_area :body, class: 'form-control', rows: 6
           .actions
             = f.submit 'Save', class: 'btn btn-success'
 

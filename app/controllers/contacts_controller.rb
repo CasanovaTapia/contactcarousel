@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  before_filter :set_current_user
 
   def database
   end
@@ -14,9 +15,9 @@ class ContactsController < ApplicationController
   # GET /contacts.json
   def index
     if params[:query].present?
-      @contacts = Contact.paginate(page: params[:page], per_page: 50).search(params[:query])
+      @contacts = current_user.contacts.paginate(page: params[:page], per_page: 50).search(params[:query])
     else
-      @contacts = Contact.all.paginate(page: params[:page], per_page: 50)
+      @contacts = current_user.contacts.all.paginate(page: params[:page], per_page: 50)
     end
     authorize @contacts
   end
@@ -36,6 +37,7 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1/edit
   def edit
+    @user = @contact.user
     authorize @contact
   end
 
@@ -43,6 +45,7 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     @contact = Contact.new(contact_params)
+    @contact.user_id = current_user.id
 
     authorize @contact
     respond_to do |format|
@@ -88,6 +91,6 @@ class ContactsController < ApplicationController
     end
 
     def contact_params
-      params.require(:contact).permit(:name, :entity, :phone, :alt_phone, :dead_phone, :email, :alt_email, :dead_email, :dial_id, :conversation_id, :investing_id, :timing_id, :motivator_id, :body)
+      params.require(:contact).permit(:name, :entity, :phone, :alt_phone, :dead_phone, :email, :alt_email, :dead_email, :dial_id, :conversation_id, :investing_id, :timing_id, :motivator_id, :body, :user_id)
     end
 end

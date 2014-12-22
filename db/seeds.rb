@@ -33,6 +33,16 @@ Motivator.create!(result: "Change")
 Motivator.create!(result: "Pain")
 motivators = Motivator.all
 
+# Create Admin
+admin = User.create!(
+  name:                     "Admin User",
+  email:                    "admin@example.com",
+  password:                 "brehelloworld",
+  password_confirmation:    "brehelloworld"
+  role:                     "premium"
+)
+
+
 # Create Contacts
 50.times do
   Contact.create!(
@@ -50,6 +60,7 @@ motivators = Motivator.all
     investing_id:       investings.sample.id,
     timing_id:          timings.sample.id,
     motivator_id:       motivators.sample.id,
+    user_id:            admin.id
   )
 end
 contacts = Contact.all

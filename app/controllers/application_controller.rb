@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
     redirect_to new_transaction_path, alert: "You must have a subscription to access this page."
   end
 
+  def set_current_user
+    User.current = current_user
+  end
+
   protected
 
   def configure_permitted_parameters
