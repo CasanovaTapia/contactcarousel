@@ -14,9 +14,9 @@ class ContactsController < ApplicationController
   # GET /contacts.json
   def index
     if params[:query].present?
-      @contacts = Contact.search(params[:query])
+      @contacts = Contact.paginate(page: params[:page], per_page: 50).search(params[:query])
     else
-      @contacts = Contact.all
+      @contacts = Contact.all.paginate(page: params[:page], per_page: 50)
     end
     authorize @contacts
   end
