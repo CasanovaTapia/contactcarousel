@@ -13,7 +13,11 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.all
+    if params[:query].present?
+      @contacts = Contact.search(params[:query])
+    else
+      @contacts = Contact.all
+    end
     authorize @contacts
   end
 

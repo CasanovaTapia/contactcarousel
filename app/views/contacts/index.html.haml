@@ -1,6 +1,18 @@
-= link_to "Import Contacts", database_contacts_path, class: 'btn btn-primary'
+.row
+  .col-md-4
+    = link_to "Import Contacts", database_contacts_path, class: 'btn btn-primary btn-sm'
+    = link_to "Add Contact", new_contact_path, class: 'btn btn-success btn-sm'
+  .col-md-3
+    = form_tag contacts_path, class: "form-inline", method: :get do
+      .form-group
+        = text_field_tag :query, params[:query], class: "form-control"
+      = submit_tag "Search", class: "btn btn-primary"
+      - if params[:query].present?
+        = link_to "clear", contacts_path
 %br
-
+%br
+%br
+  
 .row
   .col-md-2
     %b Contact Name
