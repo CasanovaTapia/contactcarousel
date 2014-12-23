@@ -38,6 +38,8 @@ class ContactsController < ApplicationController
   # GET /contacts/1/edit
   def edit
     @user = @contact.user
+    # @call = @contact.calls.build
+    # @property = @contact.properties.build
     authorize @contact
   end
 

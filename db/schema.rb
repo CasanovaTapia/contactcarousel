@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141222212708) do
+ActiveRecord::Schema.define(version: 20141223005458) do
+
+  create_table "calls", force: true do |t|
+    t.integer  "contact_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "dial_id"
+    t.integer  "conversation_id"
+    t.integer  "investing_id"
+    t.integer  "timing_id"
+    t.integer  "motivator_id"
+    t.integer  "user_id"
+  end
+
+  add_index "calls", ["contact_id"], name: "index_calls_on_contact_id"
+  add_index "calls", ["conversation_id"], name: "index_calls_on_conversation_id"
+  add_index "calls", ["dial_id"], name: "index_calls_on_dial_id"
+  add_index "calls", ["investing_id"], name: "index_calls_on_investing_id"
+  add_index "calls", ["motivator_id"], name: "index_calls_on_motivator_id"
+  add_index "calls", ["timing_id"], name: "index_calls_on_timing_id"
+  add_index "calls", ["user_id"], name: "index_calls_on_user_id"
 
   create_table "contacts", force: true do |t|
     t.string   "name"

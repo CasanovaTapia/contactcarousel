@@ -55,11 +55,6 @@ admin = User.create!(
     alt_email:          Faker::Internet.email,
     dead_email:         Faker::Internet.email,
     body:               Faker::Lorem.paragraph,
-    dial_id:            dials.sample.id,
-    conversation_id:    conversations.sample.id,
-    investing_id:       investings.sample.id,
-    timing_id:          timings.sample.id,
-    motivator_id:       motivators.sample.id,
     user_id:            admin.id
   )
 end
@@ -80,3 +75,17 @@ contacts = Contact.all
   )
 end
 properties = Property.all
+
+# Create Calls
+200.times do
+  Call.create!(
+    user_id:            admin.id,
+    contact_id:         contacts.sample.id,
+    dial_id:            dials.sample.id,
+    conversation_id:    conversations.sample.id,
+    investing_id:       investings.sample.id,
+    timing_id:          timings.sample.id,
+    motivator_id:       motivators.sample.id
+  )
+end
+calls = Call.all

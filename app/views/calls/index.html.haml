@@ -1,0 +1,31 @@
+%h3= "Call History: #{@contact.name}"
+%p= "#{@contact.calls.count} calls"
+
+.row
+  .col-md-2
+    %b Date
+  .col-md-1
+    %b Dial
+  .col-md-1
+    %b Conversation
+  .col-md-1
+    %b Investing
+  .col-md-1
+    %b Timing
+  .col-md-1
+    %b Motivator
+
+- @calls.each do |call|
+  .row
+    .col-md-2
+      = call.created_at.strftime("%b %d, %Y")
+    .col-md-1
+      = call.dial.result
+    .col-md-1
+      = call.conversation.result
+    .col-md-1
+      = call.investing.result
+    .col-md-1
+      = call.timing.result
+    .col-md-1
+      = call.motivator.result

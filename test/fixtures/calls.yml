@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  contact_id: 
+  dial: MyString
+  conversation: MyString
+  invest: MyString
+  timing: MyString
+  motivator: MyString
+
+two:
+  contact_id: 
+  dial: MyString
+  conversation: MyString
+  invest: MyString
+  timing: MyString
+  motivator: MyString
