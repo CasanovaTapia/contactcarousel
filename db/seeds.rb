@@ -38,7 +38,7 @@ admin = User.create!(
   name:                     "Admin User",
   email:                    "admin@example.com",
   password:                 "brehelloworld",
-  password_confirmation:    "brehelloworld"
+  password_confirmation:    "brehelloworld",
   role:                     "premium"
 )
 
