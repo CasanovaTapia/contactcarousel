@@ -12,17 +12,17 @@ class CallsController < ApplicationController
 
   def new
     @contact = Contact.find(params[:contact_id])
-    @call = @contact.calls.new(call_params)
+    @call = Call.new(call_params)
   end
 
   def edit
     @contact = Contact.find(params[:contact_id])
-    @call = @contact.calls.build
+    @call = Call.find(params[:id])
   end
 
   def create
     @contact = Contact.find(params[:contact_id])
-    @call = @contact.calls.new(call_params)
+    @call = @contact.calls.build(call_params)
     @call.user_id = current_user.id
 
     if @call.save
@@ -41,7 +41,7 @@ class CallsController < ApplicationController
 
   def destroy
     @contact = Contact.find(params[:contact_id])
-    @call = @contact.calls.find(params[:id])
+    @call = Call.find(params[:id])
     @call.destroy
   end
 

@@ -38,6 +38,7 @@ class ContactsController < ApplicationController
   # GET /contacts/1/edit
   def edit
     @user = @contact.user
+    # @call = Call.build(call_params)
     # @call = @contact.calls.build
     # @property = @contact.properties.build
     authorize @contact
@@ -95,4 +96,8 @@ class ContactsController < ApplicationController
     def contact_params
       params.require(:contact).permit(:name, :entity, :phone, :alt_phone, :dead_phone, :email, :alt_email, :dead_email, :dial_id, :conversation_id, :investing_id, :timing_id, :motivator_id, :body, :user_id)
     end
+
+    # def call_params
+    #   params.require(:call).permit(:contact_id, :user_id, :dial_id, :conversation_id, :investing_id, :timing_id, :motivator_id)
+    # end
 end
