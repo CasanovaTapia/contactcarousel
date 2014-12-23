@@ -9,8 +9,9 @@ Rails.application.routes.draw do
       post :import
       get :database
     end
-    
+
     resources :properties
+    resources :calls
   end
 
   resources :charges, only: [:new, :create]
