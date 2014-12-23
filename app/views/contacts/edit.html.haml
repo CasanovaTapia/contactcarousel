@@ -42,9 +42,13 @@
           .form-group
             = f.label :notes
             = f.text_area :body, class: 'form-control', rows: 6
+          .form-group
+            = f.submit 'Save', class: 'btn btn-success'
         .col-md-4
           %h4 Property details
           = link_to "Add property", new_contact_property_path(@contact)
+          %br
+          %br
           - @contact.properties.each do |property|
             %p= "#{property.street_no} #{property.street}"
             %p= "#{property.city}, #{property.state} #{property.zip}"
@@ -60,26 +64,16 @@
             = link_to "Edit", edit_contact_property_path(@contact, property), class: 'btn btn-primary btn-sm'
             = link_to "Delete", [@contact, property], method: :delete, data: { confirm: 'Are you sure you want to delete this property?' }, class: 'btn btn-danger btn-sm'
 
-
         .col-md-4
-          %h4 Call result
-          .form-group
-            = f.label :dial
-            = f.select :dial_id, options_from_collection_for_select(Dial.all, "id", "result"), class: 'form-control'
-          .form-group
-            = f.label :conversation
-            = f.select :conversation_id, options_from_collection_for_select(Conversation.all, "id", "result")
-          .form-group
-            = f.label :investing
-            = f.select :investing_id, options_from_collection_for_select(Investing.all, "id", "result")
-          .form-group
-            = f.label :timing
-            = f.select :timing_id, options_from_collection_for_select(Timing.all, "id", "result")
-          .form-group
-            = f.label :motivator
-            = f.select :motivator_id, options_from_collection_for_select(Motivator.all, "id", "result")
-          .actions
-            = f.submit 'Save', class: 'btn btn-success'
+          %h4 Call
+          = link_to "Call History", contact_calls_path(@contact)
+          %br
+          %br
+          = render 'calls/form'
+
+          -# = render partial: 'calls/last', locals: {contact: @contact}
+
+
 
   .col-md-1
     = link_to edit_contact_path(@contact.next), class: 'btn' do

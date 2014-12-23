@@ -1,4 +1,5 @@
 %h3= "Call History: #{@contact.name}"
+%p= "#{@contact.calls.count} calls"
 
 .row
   .col-md-2
@@ -8,7 +9,7 @@
   .col-md-1
     %b Conversation
   .col-md-1
-    %b Invest
+    %b Investing
   .col-md-1
     %b Timing
   .col-md-1
@@ -19,12 +20,12 @@
     .col-md-2
       = call.created_at.strftime("%b %d, %Y")
     .col-md-1
-      = call.dial
+      = call.dial.result
     .col-md-1
-      = call.conversation
+      = call.conversation.result
     .col-md-1
-      = call.invest
+      = call.investing.result
     .col-md-1
-      = call.timing
+      = call.timing.result
     .col-md-1
-      = call.motivator
+      = call.motivator.result

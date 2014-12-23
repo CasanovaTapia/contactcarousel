@@ -7,29 +7,36 @@ class CallsController < ApplicationController
 
   def show
     @contact = Contact.find(params[:contact_id])
-    @call = @contact.calls.find(params[:id])
+    @call = Call.new
   end
 
   def new
     @contact = Contact.find(params[:contact_id])
     @call = @contact.calls.new(call_params)
-    respond_with(@call)
   end
 
   def edit
     @contact = Contact.find(params[:contact_id])
-    @call = @contact.calls.find(params[:id])
+    @call = @contact.calls.build
   end
 
   def create
     @contact = Contact.find(params[:contact_id])
     @call = @contact.calls.new(call_params)
-    @call.save
+    @call.user_id = current_user.id
+
+    if @call.save
+      flash[:notice] = "Your Call was successfully posted."
+      redirect_to @contact
+    else
+      flash[:error] = "Your Call was not posted. Please try again."
+      redirect_to @contact
+    end
   end
 
   def update
     @contact = Contact.find(params[:contact_id])
-    @call = @contact.calls.find(params[:id])
+    @call = Call.find(params[:id])
   end
 
   def destroy
@@ -40,6 +47,6 @@ class CallsController < ApplicationController
 
   private
     def call_params
-      params.require(:call).permit(:contact_id, :dial, :conversation, :invest, :timing, :motivator)
+      params.require(:call).permit(:contact_id, :user_id, :dial_id, :conversation_id, :investing_id, :timing_id, :motivator_id)
     end
 end
