@@ -6,6 +6,7 @@ class Contact < ActiveRecord::Base
   belongs_to :timing
   belongs_to :motivator
   has_many :properties, dependent: :destroy
+  has_many :calls, dependent: :destroy
 
   validates :name, presence: true
 

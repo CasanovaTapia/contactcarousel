@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141222212708) do
+ActiveRecord::Schema.define(version: 20141223001733) do
+
+  create_table "calls", force: true do |t|
+    t.integer  "contact_id"
+    t.string   "dial"
+    t.string   "conversation"
+    t.string   "invest"
+    t.string   "timing"
+    t.string   "motivator"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "calls", ["contact_id"], name: "index_calls_on_contact_id"
 
   create_table "contacts", force: true do |t|
     t.string   "name"
