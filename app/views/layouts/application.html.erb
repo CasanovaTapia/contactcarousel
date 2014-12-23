@@ -32,7 +32,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <!-- <li><%= link_to "About", static_about_path %></li> -->
-          <% if current_user.contacts.first %>
+          <% if current_user && current_user.contacts.first %>
             <li><%= link_to "Carousel", edit_contact_path(current_user.contacts.first) %></li>
           <% else %>
             <li><%= link_to "Carousel", contacts_path %></li>
