@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+
   resources :transactions, only: [:new, :create]
   resources :subscriptions, only: [:index, :new, :create]
 
   devise_for :users, :controllers => { :registrations => "registrations" }
 
   resources :contacts do
+    resources :calls
     collection do
       post :import
       get :database

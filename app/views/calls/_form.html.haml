@@ -1,0 +1,24 @@
+= form_for [@contact, @contact.calls.build] do |f|
+  - if @contact.calls.build.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@contact.calls.build.errors.count, "error")} prohibited this call from being saved:"
+      %ul
+        - @call.errors.full_messages.each do |msg|
+          %li= msg
+  .form-group
+    = f.label :dial
+    = f.select :dial_id, options_from_collection_for_select(Dial.all, "id", "result"), class: 'form-control'
+  .form-group
+    = f.label :conversation
+    = f.select :conversation_id, options_from_collection_for_select(Conversation.all, "id", "result")
+  .form-group
+    = f.label :investing
+    = f.select :investing_id, options_from_collection_for_select(Investing.all, "id", "result")
+  .form-group
+    = f.label :timing
+    = f.select :timing_id, options_from_collection_for_select(Timing.all, "id", "result")
+  .form-group
+    = f.label :motivator
+    = f.select :motivator_id, options_from_collection_for_select(Motivator.all, "id", "result")
+  .actions
+    = f.submit 'Save', class: 'btn btn-success btn-sm'
