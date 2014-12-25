@@ -40,11 +40,11 @@
       .col-md-3
         = mail_to contact.email
       .col-md-1
-        = contact.calls.last.investing.result if contact.calls.last
+        = contact.calls.last.investing.result if contact.calls.last && contact.calls.last.investing
       .col-md-1
-        = contact.calls.last.timing.result if contact.calls.last
+        = contact.calls.last.timing.result if contact.calls.last && contact.calls.last.timing
       .col-md-1
-        = contact.calls.last.motivator.result if contact.calls.last
+        = contact.calls.last.motivator.result if contact.calls.last && contact.calls.last.motivator
 
   = will_paginate @contacts
 - else
