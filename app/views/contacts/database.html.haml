@@ -1,16 +1,17 @@
 .row
   .col-md-6.col-md-offset-3
     %p Import your contact database via CSV file
-    %p The first row must be Contact attributes (name, entity, phone, email)
+    %p The top row sets Contact attributes (user_id, name, entity, phone, email)
+    %p= "The first column must be populated with your unique user id. #{current_user.name} id: #{current_user.id}"
     %br
     %h5 Sample CSV file
-    = image_tag "http://i1381.photobucket.com/albums/ah208/Ching_Casanova_Tapia/ScreenShot2014-12-20at125834PM_zpsa73901d1.png"
+    = image_tag "http://i1381.photobucket.com/albums/ah208/Ching_Casanova_Tapia/ScreenShot2014-12-25at42457PM_zps6829df73.png"
     %br
     %br
     %br
     %p Or save an Excel spreadsheet as a CSV file
     %h5 Sample spreadsheet, saved as .csv
-    = image_tag "http://i1381.photobucket.com/albums/ah208/Ching_Casanova_Tapia/ScreenShot2014-12-20at125603PM_zpsf5ac04a9.png"
+    = image_tag "http://i1381.photobucket.com/albums/ah208/Ching_Casanova_Tapia/ScreenShot2014-12-25at42546PM_zps89e16097.png"
     %br
     %br
     %br
