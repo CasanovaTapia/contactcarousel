@@ -12,21 +12,21 @@ class PropertiesController < ApplicationController
   # GET /properties/1.json
   def show
     @contact = Contact.find(params[:contact_id])
-    @property = @contact.properties.find(params[:id])
+    @property = Property.find(params[:id])
     authorize @property
   end
 
   # GET /properties/new
   def new
     @contact = Contact.find(params[:contact_id])
-    @property = @contact.properties.new(property_params)
+    @property = Property.new
     authorize @property
   end
 
   # GET /properties/1/edit
   def edit
     @contact = Contact.find(params[:contact_id])
-    @property = @contact.properties.find(params[:id])
+    @property = Property.find(params[:id])
     authorize @property
   end
 
@@ -34,7 +34,8 @@ class PropertiesController < ApplicationController
   # POST /properties.json
   def create
     @contact = Contact.find(params[:contact_id])
-    @property = @contact.properties.new(property_params)
+    @property = Property.new(property_params)
+    @property.contact = @contact
     authorize @property
 
     respond_to do |format|
@@ -52,8 +53,9 @@ class PropertiesController < ApplicationController
   # PATCH/PUT /properties/1.json
   def update
     @contact = Contact.find(params[:contact_id])
-    @property = @contact.properties.find(params[:id])
+    @property = Property.find(params[:id])
     authorize @property
+
     respond_to do |format|
       if @property.update(property_params)
         format.html { redirect_to edit_contact_path(@contact), notice: 'Property was successfully updated.' }
@@ -69,7 +71,7 @@ class PropertiesController < ApplicationController
   # DELETE /properties/1.json
   def destroy
     @contact = Contact.find(params[:contact_id])
-    @property = @contact.properties.find(params[:id])
+    @property = Property.find(params[:id])
     authorize @property
     @property.destroy
     respond_to do |format|
@@ -79,8 +81,7 @@ class PropertiesController < ApplicationController
   end
 
   private
-    # Never trust parameters from the scary internet, only allow the white list through.
     def property_params
-      params.permit(:street_no, :street, :city, :state, :zip, :year_built, :units, :purchase_year, :contact_id)
+      params.require(:property).permit(:street_no, :street, :city, :state, :zip, :year_built, :units, :purchase_year, :contact_id)
     end
 end
