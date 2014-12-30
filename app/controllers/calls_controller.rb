@@ -12,37 +12,41 @@ class CallsController < ApplicationController
 
   def new
     @contact = Contact.find(params[:contact_id])
-    @call = Call.new(call_params)
+    @call = Call.new
   end
 
   def edit
     @contact = Contact.find(params[:contact_id])
     @call = Call.find(params[:id])
+    redirect_to edit_contact_path(@contact)
   end
 
   def create
     @contact = Contact.find(params[:contact_id])
-    @call = @contact.calls.build(call_params)
+    @call = Call.new(call_params)
+    @call.contact_id = @contact.id
     @call.user_id = current_user.id
 
     if @call.save
       flash[:notice] = "Your Call was successfully posted."
-      redirect_to @contact
+      redirect_to edit_contact_path(@contact)
     else
       flash[:error] = "Your Call was not posted. Please try again."
-      redirect_to @contact
+      redirect_to edit_contact_path(@contact)
     end
   end
 
   def update
     @contact = Contact.find(params[:contact_id])
     @call = Call.find(params[:id])
+    redirect_to edit_contact_path(@contact)
   end
 
   def destroy
     @contact = Contact.find(params[:contact_id])
     @call = Call.find(params[:id])
     @call.destroy
+    redirect_to edit_contact_path(@contact)
   end
 
   private

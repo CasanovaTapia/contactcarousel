@@ -1,5 +1,3 @@
-%h3
-  .text-warning.text-right= "status: #{@contact.investing.result}, #{@contact.timing.result}" if @contact.investing && @contact.timing
 .row
   .col-md-1
     = link_to edit_contact_path(@contact.previous), class: 'btn' do
@@ -70,8 +68,6 @@
           %br
           %br
           = render 'calls/form'
-
-          -# = render partial: 'calls/last', locals: {contact: @contact}
 
 
 

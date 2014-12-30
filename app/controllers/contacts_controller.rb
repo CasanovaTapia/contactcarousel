@@ -1,6 +1,5 @@
 class ContactsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_contact, only: [:show, :edit, :update, :destroy]
   before_filter :set_current_user
 
   def database
@@ -11,8 +10,6 @@ class ContactsController < ApplicationController
     redirect_to contacts_path, notice: "Contacts imported."
   end
 
-  # GET /contacts
-  # GET /contacts.json
   def index
     if params[:query].present?
       @contacts = current_user.contacts.paginate(page: params[:page], per_page: 50).search(params[:query])
@@ -22,30 +19,24 @@ class ContactsController < ApplicationController
     authorize @contacts
   end
 
-  # GET /contacts/1
-  # GET /contacts/1.json
   def show
-    authorize @contact
+    @contact = Contact.find(params[:id])
+    @new_call = @contact.calls.build
     redirect_to edit_contact_path(@contact)
   end
 
-  # GET /contacts/new
   def new
     @contact = Contact.new
     authorize @contact
   end
 
-  # GET /contacts/1/edit
   def edit
+    @contact = Contact.find(params[:id])
     @user = @contact.user
-    # @call = Call.build(call_params)
-    # @call = @contact.calls.build
-    # @property = @contact.properties.build
+    @new_call = @contact.calls.build
     authorize @contact
   end
 
-  # POST /contacts
-  # POST /contacts.json
   def create
     @contact = Contact.new(contact_params)
     @contact.user_id = current_user.id
@@ -62,9 +53,8 @@ class ContactsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /contacts/1
-  # PATCH/PUT /contacts/1.json
   def update
+    @contact = Contact.find(params[:id])
     authorize @contact
     respond_to do |format|
       if @contact.update(contact_params)
@@ -77,9 +67,8 @@ class ContactsController < ApplicationController
     end
   end
 
-  # DELETE /contacts/1
-  # DELETE /contacts/1.json
   def destroy
+    @contact = Contact.find(params[:id])
     authorize @contact
     @contact.destroy
     respond_to do |format|
@@ -89,15 +78,7 @@ class ContactsController < ApplicationController
   end
 
   private
-    def set_contact
-      @contact = Contact.find(params[:id])
-    end
-
     def contact_params
       params.require(:contact).permit(:name, :entity, :phone, :alt_phone, :dead_phone, :email, :alt_email, :dead_email, :dial_id, :conversation_id, :investing_id, :timing_id, :motivator_id, :body, :user_id)
     end
-
-    # def call_params
-    #   params.require(:call).permit(:contact_id, :user_id, :dial_id, :conversation_id, :investing_id, :timing_id, :motivator_id)
-    # end
 end

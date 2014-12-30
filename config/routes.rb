@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
 
   resources :contacts do
-    resources :calls
     collection do
       post :import
       get :database

@@ -7,6 +7,8 @@ class Contact < ActiveRecord::Base
   belongs_to :motivator
   has_many :properties, dependent: :destroy
   has_many :calls, dependent: :destroy
+  
+  accepts_nested_attributes_for :calls
 
   validates :name, presence: true
 

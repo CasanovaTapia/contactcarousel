@@ -26,24 +26,6 @@
     %p
       %b Dead email:
       = @contact.dead_email
-  .col-md-4
-    %p
-      %b Dial result:
-      = @contact.dial.result
-    %p
-      %b Conversation result:
-      = @contact.conversation.result
-    %p
-      %b Investing? :
-      = @contact.investing.result
-    %p
-      %b Timing:
-      = @contact.timing.result
-    %p
-      %b Motivator:
-      = @contact.motivator.result
-    %p
+    %p  
       %b Notes:
       = @contact.body
-
--# = link_to "next", @contact.next
