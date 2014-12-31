@@ -1,3 +1,6 @@
+- if @contact.calls.last
+  .text-right
+    %h3.status= "status: #{@contact.calls.last.investing.result}, #{@contact.calls.last.timing.result}"
 .row
   .col-md-1
     = link_to edit_contact_path(@contact.previous), class: 'btn' do
@@ -66,10 +69,26 @@
           %h4 Call
           = link_to "Call History", contact_calls_path(@contact)
           %br
+          = link_to "New Call", new_contact_call_path(@contact)
           %br
-          = render 'calls/form'
-
-
+          %br
+          - if @contact.calls.last
+            %h4= "Last call on #{@contact.calls.last.created_at.strftime("%m/%d/%Y")}"
+            %p
+              %b Dial:
+              = @contact.calls.last.dial.result
+            %p
+              %b Conversation:
+              = @contact.calls.last.conversation.result
+            %p
+              %b Investing?
+              = @contact.calls.last.investing.result
+            %p
+              %b Timing:
+              = @contact.calls.last.timing.result
+            %p
+              %b Motivator:
+              = @contact.calls.last.motivator.result
 
   .col-md-1
     = link_to edit_contact_path(@contact.next), class: 'btn' do
