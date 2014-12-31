@@ -33,7 +33,6 @@ class ContactsController < ApplicationController
   def edit
     @contact = Contact.find(params[:id])
     @user = @contact.user
-    @new_call = @contact.calls.build
     authorize @contact
   end
 
