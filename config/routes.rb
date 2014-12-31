@@ -6,13 +6,13 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
 
   resources :contacts do
+    resources :properties
+    resources :calls
+    
     collection do
       post :import
       get :database
     end
-
-    resources :properties
-    resources :calls
   end
 
   resources :charges, only: [:new, :create]
