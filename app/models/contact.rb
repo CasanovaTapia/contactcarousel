@@ -12,10 +12,10 @@ class Contact < ActiveRecord::Base
 
   validates :name, presence: true
 
-  default_scope { order('updated_at ASC') }
+  # default_scope { order('updated_at ASC') }
 
-  scope :next, lambda { |id| where("id > ?", id).order("id ASC") }
-  scope :previous, lambda { |id| where("id < ?", id).order("id DESC") }
+  # scope :next, lambda { |id| where("id > ?", id).order("id ASC") }
+  # scope :previous, lambda { |id| where("id < ?", id).order("id DESC") }
 
   searchkick
 
@@ -26,7 +26,7 @@ class Contact < ActiveRecord::Base
   end
 
   def previous
-    if self.id == User.current.contacts.first.id || self.id == 1
+    if self.id == 1
       User.current.contacts.last
     else
       User.current.contacts.where("id < ?", self.id).last
@@ -34,7 +34,7 @@ class Contact < ActiveRecord::Base
   end
 
   def next
-    if self.id == User.current.contacts.last.id
+    if self == User.current.contacts.last
       User.current.contacts.first
     else
       User.current.contacts.where("id > ?", self.id).first
