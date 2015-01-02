@@ -1,4 +1,4 @@
-= form_for [@contact, @call] do |f|
+= form_for [@contact, @contact.calls.build] do |f|
   .form-group
     = f.label :dial
     = f.select :dial_id, options_from_collection_for_select(Dial.all, "id", "result"), class: 'form-control'

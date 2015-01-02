@@ -72,7 +72,7 @@
           = link_to "New Call", new_contact_call_path(@contact)
           %br
           %br
-          - if @contact.calls.last
+          - if @contact.calls.last.created_at
             %h4= "Last call on #{@contact.calls.last.created_at.strftime("%m/%d/%Y")}"
             %p
               %b Dial:
