@@ -1,5 +1,7 @@
 class TransactionsController < ApplicationController
   def new
+    @subscription = Subscription.new
+    @plan = Plan.last
     @stripe_btn_data = {
       key: "#{ Rails.configuration.stripe[:publishable_key] }",
       description: "Call Carousel Membership",

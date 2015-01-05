@@ -23,6 +23,7 @@ class SubscriptionsController < ApplicationController
       flash[:notice] = 'Thank you for subscribing to Call Carousel'
       redirect_to '/'
     else
+      flash[:notice] = 'Your subscription was not successful. Please try again.'
       render :new
     end
   end
